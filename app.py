@@ -12,7 +12,7 @@ from sklearn.preprocessing import StandardScaler
 
 df = pd.read_csv('data/cleaned_starbucks.csv')
 
-page = st.sidebar.selectbox("Select a Page", ["Home", "Data Overview", "Exploratory Data Analysis", "Model Training and Evaluation", "Make Predictions!", "Extras"])
+page = st.sidebar.selectbox("Select a Page", ["Home", "Data Overview", "Exploratory Data Analysis"])
 if page == "Home":
     st.title("☕Starbucks Dataset Explorer")
     st.subheader("Welcome to my Starbucks Dataset app!")
@@ -35,8 +35,8 @@ elif page == "Exploratory Data Analysis":
         h_selected_col = st.selectbox("Select a numerical column for the histogram:", num_cols)
         if h_selected_col:
             chart_title = f"Distribution of {h_selected_col.title().replace("_", ' ')}"
-            if st.checkbox("Show by beverage"):
-                st.plotly_chart(px.histogram(df, x=h_selected_col, color ='beverage', title = chart_title, barmode = 'overlay'))
+            if st.checkbox("Show by Beverage"):
+                st.plotly_chart(px.histogram(df, x=h_selected_col, color ='Beverage', title = chart_title, barmode = 'overlay'))
             else:
                 st.plotly_chart(px.histogram(df, x=h_selected_col, title=chart_title))
     if 'Box Plots' in eda_type:
@@ -53,11 +53,11 @@ elif page == "Exploratory Data Analysis":
         selected_col_y = st.selectbox("Select y-axis variable:", num_cols)
         if selected_col_x and selected_col_y:
             chart_title = f"{selected_col_x.title().replace('_',' ')}vs. {selected_col_y.title().replace('_', ' ')}"
-            st.plotly_chart(px.scatter(df, x=selected_col_x, y=selected_col_y, color='beverage', title = chart_title))
+            st.plotly_chart(px.scatter(df, x=selected_col_x, y=selected_col_y, color='Beverage', title = chart_title))
     if 'Count Plots' in eda_type:
         st.subheader("Count Plots -")
         obj_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
         selected_col = st.selectbox("Select a categorical variable:", obj_cols)
         if selected_col:
             chart_title = f'Distribution of {selected_col.title()}'
-            st.plotly_chart(px.histogram(df, x=selected_col, color='beverage', title = chart_title)) 
+            st.plotly_chart(px.histogram(df, x=selected_col, color='Beverage', title = chart_title)) 
