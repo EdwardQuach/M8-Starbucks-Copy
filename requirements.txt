@@ -1,1 +1,5 @@
-streamlit plotly matplotlib pandas scikit-learn
+streamlit 
+plotly 
+matplotlib 
+pandas 
+scikit-learn
