@@ -1,3 +1,10 @@
+import subprocess
+import sys
+
+packages = ["streamlit", "pandas", "plotly", "matplotlib", "scikit-learn"]
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", *packages])
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
